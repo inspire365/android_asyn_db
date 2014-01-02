@@ -57,7 +57,7 @@ public class DbService {
 				worker = new CipherDbWorker(this.appcontext, this.appversion,
 						this.dbname, this.handlers, this.observers);
 			}
-			Log.d("YY", "Worker create...");
+			Log.d("DB", "Worker create...");
 			mIsAlive = true;
 			return worker.init();
 		}
