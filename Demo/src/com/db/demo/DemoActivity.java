@@ -1,5 +1,7 @@
 package com.db.demo;
 
+import com.repository.dbservice.DbService;
+
 import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
@@ -8,6 +10,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import com.repository.dbservice.DbServiceConst;
 
 public class DemoActivity extends Activity {
 
@@ -18,6 +21,17 @@ public class DemoActivity extends Activity {
 	private EditText input_box;
 	
 	private SimpleListAdapter slAdapter;
+	private DbService dbService;
+	
+	
+	private void InitDbService(){
+		dbService = new DbService();
+		dbService.setupService(this, DbServiceConst.appversion, "sample.db", DbService.SQLITE_TYPE_PLAIN);
+		dbService.registerHandler(DbServiceConst.kSampleAppId, new SampleHandler());
+		dbService.registerObserver(DbServiceConst.kSampleAppId, slAdapter);
+		dbService.startService();
+	}
+	
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +55,7 @@ public class DemoActivity extends Activity {
 		});
 		btn_load_db=(Button)findViewById(R.id.btn_load_db);
 		btn_clear=(Button)findViewById(R.id.btn_clear);
+	    this.InitDbService();
 	}
 
 	@Override

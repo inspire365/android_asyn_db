@@ -3,6 +3,9 @@ package com.db.demo;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.repository.dbservice.DbRspBase;
+import com.repository.dbservice.IDbObserver;
+
 import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,7 +13,7 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 
-public class SimpleListAdapter extends BaseAdapter {
+public class SimpleListAdapter extends BaseAdapter implements IDbObserver {
 
 	Context context;
 	List<String> lst = new ArrayList<String>();
@@ -54,6 +57,12 @@ public class SimpleListAdapter extends BaseAdapter {
 			lst.add(text);
 			this.notifyDataSetChanged();
 		}
+	}
+
+	@Override
+	public void Notify(DbRspBase rsp) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }

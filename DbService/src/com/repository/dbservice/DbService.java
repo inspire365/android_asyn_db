@@ -70,7 +70,7 @@ public class DbService {
 	 * @param observer  observer to get notification
 	 * @return 0 for successful
 	 */
-	public int RegisterObserver(long appid, IDbObserver observer) {
+	public int registerObserver(long appid, IDbObserver observer) {
 		synchronized (observers) // local scope lock
 		{
 			List<IDbObserver> obs = observers.get(appid);
@@ -114,7 +114,7 @@ public class DbService {
 	 * @param Handler
 	 * @return 0 for successful
 	 */
-	public int RegisterHandler(long appid, IDbHandler Handler) {
+	public int registerHandler(long appid, IDbHandler Handler) {
 		
 		if (worker == null){
 	      handlers.put(appid, Handler); // just insert or replace

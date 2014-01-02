@@ -3,6 +3,7 @@
 	<name>Demo</name>
 	<comment></comment>
 	<projects>
+		<project>DbService</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
