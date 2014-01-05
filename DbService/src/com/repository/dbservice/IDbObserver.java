@@ -6,6 +6,6 @@ public interface IDbObserver {
 	 * 
 	 * @param rsp  DB operation response return from IDbHandler
 	 */
-	public abstract void Notify(DbRspBase rsp);
+	public abstract void notify(DbRspBase rsp);
 
 }

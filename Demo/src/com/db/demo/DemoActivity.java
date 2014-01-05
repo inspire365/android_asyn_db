@@ -1,5 +1,6 @@
 package com.db.demo;
 
+import com.repository.dbservice.DbReqBase;
 import com.repository.dbservice.DbService;
 
 import android.os.Bundle;
@@ -49,12 +50,30 @@ public class DemoActivity extends Activity {
 				// TODO Auto-generated method stub
 				String text = input_box.getText().toString();
 				input_box.setText("");   // reset
-				slAdapter.AddTextItem(text);
+				slAdapter.addTextItem(text);
+				SampleInsertReq req = new SampleInsertReq();
+				req.appid = DbServiceConst.kSampleAppId;
+				req.msg = text;
+				req.cmd = SampleCmd.kCmdInsert;
+				req.priority = DbReqBase.DB_REQ_PRIORITY_NORMAL;
+				dbService.putDBReq(req);
+
 			}
 			
 		});
 		btn_load_db=(Button)findViewById(R.id.btn_load_db);
 		btn_clear=(Button)findViewById(R.id.btn_clear);
+		btn_clear.setOnClickListener(new OnClickListener(){
+
+			@Override
+			public void onClick(View arg0) {
+				// TODO Auto-generated method stub
+				slAdapter.clearData();
+			}
+			
+		});
+		
+		
 	    this.InitDbService();
 	}
 

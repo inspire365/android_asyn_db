@@ -7,6 +7,7 @@ import com.repository.dbservice.DbRspBase;
 import com.repository.dbservice.IDbObserver;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -52,17 +53,25 @@ public class SimpleListAdapter extends BaseAdapter implements IDbObserver {
 	}
 	
 	
-	public void AddTextItem(String text){
+	public void addTextItem(String text){
 		if (text != null){
 			lst.add(text);
 			this.notifyDataSetChanged();
 		}
 	}
 
+	public void clearData(){
+		lst.clear();
+		this.notifyDataSetChanged();
+	}
+	
+	
 	@Override
-	public void Notify(DbRspBase rsp) {
+	public void notify(DbRspBase rsp) {
 		// TODO Auto-generated method stub
-		
+		if (rsp.cmd == SampleCmd.kCmdInsert){
+			Log.d("DB", "SimpleListAdapter::notify insert result: " + String.valueOf(rsp.resultCode));
+		}
 	}
 	
 }

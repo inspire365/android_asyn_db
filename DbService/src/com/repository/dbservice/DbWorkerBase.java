@@ -93,7 +93,7 @@ public class DbWorkerBase extends Thread {
 			Iterator<IDbObserver> it = obs.iterator();
 			while (it.hasNext()) {
 				IDbObserver observer = it.next();
-				observer.Notify(rsp);
+				observer.notify(rsp);
 			}
 		} // synchronized
 	}
