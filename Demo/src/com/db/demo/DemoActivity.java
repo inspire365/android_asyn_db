@@ -38,8 +38,10 @@ public class DemoActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_demo);
+		slAdapter = new SimpleListAdapter(this);		
+	    this.InitDbService();
+	    slAdapter.setDbService(dbService);
 		lsv = (ListView)findViewById(R.id.text_list);
-		slAdapter = new SimpleListAdapter(this);
 		lsv.setAdapter(slAdapter);
 		input_box = (EditText)findViewById(R.id.edit_box);
 		btn_add_text= (Button)findViewById(R.id.btn_plus);
@@ -62,6 +64,17 @@ public class DemoActivity extends Activity {
 			
 		});
 		btn_load_db=(Button)findViewById(R.id.btn_load_db);
+		btn_load_db.setOnClickListener(new OnClickListener(){
+
+			@Override
+			public void onClick(View arg0) {
+				// TODO Auto-generated method stub
+				slAdapter.queryNextBatchMsg();
+			}
+			
+		});
+		
+		
 		btn_clear=(Button)findViewById(R.id.btn_clear);
 		btn_clear.setOnClickListener(new OnClickListener(){
 
@@ -72,9 +85,7 @@ public class DemoActivity extends Activity {
 			}
 			
 		});
-		
-		
-	    this.InitDbService();
+
 	}
 
 	@Override
