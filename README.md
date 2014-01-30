@@ -50,8 +50,9 @@ The Demo project is a simple example to use the DB service
    it will be a crash, You can try runOnUiThread or android Hanlder (not
    the above IDbHandler).
 
-3. Setup the DB service, register handlers and observers, please check
-   the Demo example
+3. Setup the DB service, register handlers and observers. Every different classified
+   type of bussiness should be assigned an unique appid to get to the proper
+   observer and handler. please check the Demo example
 
 4. Derived a request from request base class and then put the request to
    the DB service. For example, the SampleInsertReq in the demo project.
